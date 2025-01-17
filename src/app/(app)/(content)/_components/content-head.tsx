@@ -35,7 +35,7 @@ function InternalContentHead({ ...content }: ContentHeadProps) {
   return (
     <>
       <div className="h-screen bg-transparent" />
-      <div className="flex gap-8 container -mt-[26rem]">
+      <div className="flex gap-8 container max-md:-mt-[20rem] -mt-[26rem]">
         <CustomImage
           type="poster"
           size="w342"

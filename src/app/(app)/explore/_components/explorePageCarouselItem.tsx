@@ -19,7 +19,7 @@ export function ExplorePageMainCarouselItems({
 
   if (!trendingMovies) return null;
   return (
-    <CarouselContent className="h-[72lvh] lg:h-screen select-none">
+    <CarouselContent className="h-[72lvh] max-sm:h-[80lvh] lg:h-screen select-none">
       {trendingMovies?.results?.map((result) => (
         <CarouselItem
           // index={index}
@@ -29,7 +29,7 @@ export function ExplorePageMainCarouselItems({
           <Link
             prefetch
             href={`/movie/${result.id}`}
-            className="relative flex justify-start max-lg:pt-20 items-center bg-background rounded-xl active:cursor-grabbing overflow-hidden group size-full"
+            className="relative flex justify-start max-sm:pt-40 max-lg:pt-20 items-center bg-background rounded-xl active:cursor-grabbing overflow-hidden group size-full"
           >
             <CustomImage
               // key={`backdrop-${result.backdrop_path}`}
@@ -66,7 +66,7 @@ export function ExplorePageMainCarouselItems({
                 size="w500"
                 src={result.poster_path}
                 alt=""
-                className="w-full max-w-72 md:max-w-80 aspect-[2/3] h-auto  rounded-xl"
+                className="w-full max-w-72 max-sm:max-w-48 md:max-w-80 aspect-[2/3] h-full rounded-xl"
               />
             </div>
           </Link>

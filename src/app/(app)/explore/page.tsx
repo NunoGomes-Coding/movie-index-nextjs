@@ -44,7 +44,7 @@ export default async function Explore() {
           <ExplorePageMainCarouselItems trendingMovies={trendingMovies} />
         </ExplorePageMainCarousel>
       </section>
-      <section className="relative -mt-24 lg:-mt-40 space-y-6">
+      <section className="relative max-sm:-mt-16 -mt-24 lg:-mt-40 space-y-6">
         <CustomCarousel container title="In Theaters">
           {nowPlayingMovies?.results?.map((movie) => (
             <CustomCarouselItem

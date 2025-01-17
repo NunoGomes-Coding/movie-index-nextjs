@@ -7,7 +7,7 @@ export default function Loading() {
     <section className="relative bg-transparent">
       <ScrollToTop />
       <div className="h-screen bg-transparent" />
-      <div className="flex gap-8 container -mt-[26rem]">
+      <div className="flex gap-8 container max-md:-mt-[20rem] -mt-[26rem]">
         <Skeleton className="max-md:hidden rounded-lg w-auto h-[350px] select-none aspect-[2/3] object-cover" />
 
         <div className="space-y-4 w-full md:w-[60%]">
