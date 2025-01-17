@@ -119,29 +119,41 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      // that is animation class
       animation: {
         "fade-in": "fadeIn 1s ease-in-out",
         "fade-out": "fadeIn 1s ease-in-out",
         "progress-thumb": "progress 4s linear forwards",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "spinner-leaf-fade": "spinner-leaf-fade 0.8s linear infinite",
       },
-
-      // that is actual animation
       keyframes: {
         fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
+          },
         },
         fadeOut: {
-          "0%": { opacity: "1" },
-          "100%": { opacity: "0" },
+          "0%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0",
+          },
         },
         progress: {
-          "0%": { width: "5%" },
-          "90%": { width: "100%" },
-          "100%": { width: "100%" },
+          "0%": {
+            width: "5%",
+          },
+          "90%": {
+            width: "100%",
+          },
+          "100%": {
+            width: "100%",
+          },
         },
         "accordion-down": {
           from: {
@@ -157,6 +169,14 @@ export default {
           },
           to: {
             height: "0",
+          },
+        },
+        "spinner-leaf-fade": {
+          "0%, 100%": {
+            opacity: "0",
+          },
+          "50%": {
+            opacity: "1",
           },
         },
       },

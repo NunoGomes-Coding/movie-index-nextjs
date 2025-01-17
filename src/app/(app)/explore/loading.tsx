@@ -1,12 +1,14 @@
 import { CarouselSkeleton } from "@/components/app/carousel-skeleton";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
     <>
       <section>
-        <Skeleton className="h-screen w-screen from-transparent to-muted bg-gradient-to-t" />
+        <div className="h-screen w-[calc(100vw-15px)] flex justify-center items-center">
+          <Spinner size="lg" className="z-10" loading />
+        </div>
       </section>
       <section className="relative -mt-24 lg:-mt-40 space-y-6">
         <CarouselSkeleton container />
