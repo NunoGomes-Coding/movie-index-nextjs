@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 import "./globals.css";
 
 const inter = Inter({
@@ -38,6 +40,8 @@ export default function RootLayout({
         className="antialiased flex flex-col min-h-screen"
       >
         <NuqsAdapter>{children}</NuqsAdapter>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
