@@ -49,7 +49,15 @@ export function ExplorePageMainCarouselItems({
                 className="object-top absolute inset-0 transition-transform duration-300 object-cover size-full"
               /> */}
             <div className="absolute inset-0 bg-gradient-to-t from-background via-60% via-background/40 to-background/0 backdrop-blur-2xl" />
-            <div className="z-10 container flex lg:flex-row flex-col-reverse justify-between items-center gap-6">
+            <div className="z-10 container flex lg:flex-row flex-col justify-start items-center gap-12">
+              <CustomImage
+                // key={`poster-${result.poster_path}`}
+                type="poster"
+                size="w500"
+                src={result.poster_path}
+                alt=""
+                className="w-full max-w-72 max-sm:max-w-48 md:max-w-80 aspect-[2/3] h-full rounded-xl"
+              />
               <div className="max-lg:pb-36 max-lg:text-center flex flex-col gap-3 lg:gap-5 lg:justify-center lg:h-full">
                 <p className="font-semibold text-3xl lg:text-6xl">
                   {result.title}
@@ -60,14 +68,6 @@ export function ExplorePageMainCarouselItems({
                   <RatingBadge rating={result.vote_average} />
                 </div>
               </div>
-              <CustomImage
-                // key={`poster-${result.poster_path}`}
-                type="poster"
-                size="w500"
-                src={result.poster_path}
-                alt=""
-                className="w-full max-w-72 max-sm:max-w-48 md:max-w-80 aspect-[2/3] h-full rounded-xl"
-              />
             </div>
           </Link>
         </CarouselItem>
