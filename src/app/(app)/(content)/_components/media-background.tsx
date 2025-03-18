@@ -1,9 +1,9 @@
 "use client";
 
-import { memo, Suspense, useEffect, useRef, useState } from "react";
+import { memo, Suspense, useEffect, useRef } from "react";
 import { cn, constrainValue, mapValue } from "@/lib/utils";
 
-import { operations } from "@/tmdb/schema";
+import type { operations } from "@/tmdb/schema";
 import {
   MediaPlayer,
   type MediaPlayerInstance,
@@ -37,6 +37,11 @@ function GetTrailer(
   return video ? `${video.site?.toLowerCase()}/${video.key}` : undefined;
 }
 
+const MIN_SCROLL = 0;
+const MAX_SCROLL = 325;
+const MIN_BLUR = 0;
+const MAX_BLUR = 55;
+
 export function MediaBackground({
   backdrop_path,
   poster_path,
@@ -46,16 +51,30 @@ export function MediaBackground({
   poster_path?: string | undefined;
   video?: videosType;
 }) {
-  const [scroll, setScroll] = useState(0);
+  // const [scroll, setScroll] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const handleScroll = () => {
-    if (window) {
-      setScroll(window.scrollY);
-    }
-  };
+  // const handleScroll = () => {
+  //   if (window) {
+  //     setScroll(window.scrollY);
+  //   }
+  // };
 
   useEffect(() => {
+    const handleScroll = () => {
+      if (overlayRef.current) {
+        const amountBlur = mapValue(
+          constrainValue(window.scrollY, MIN_SCROLL, MAX_SCROLL),
+          MIN_SCROLL,
+          MAX_SCROLL,
+          MIN_BLUR,
+          MAX_BLUR
+        );
+
+        overlayRef.current.style.backdropFilter = `blur(${amountBlur}px)`;
+      }
+    };
+
     if (window) {
       handleScroll();
       window.addEventListener("scroll", handleScroll, { passive: true });
@@ -66,24 +85,24 @@ export function MediaBackground({
     }
   }, []);
 
-  useEffect(() => {
-    if (overlayRef.current) {
-      const minScroll = 0;
-      const maxScroll = 325;
-      const minBlur = 0;
-      const maxBlur = 55;
+  // useEffect(() => {
+  //   if (overlayRef.current) {
+  //     const minScroll = 0;
+  //     const maxScroll = 325;
+  //     const minBlur = 0;
+  //     const maxBlur = 55;
 
-      const amountBlur = mapValue(
-        constrainValue(scroll, minScroll, maxScroll),
-        minScroll,
-        maxScroll,
-        minBlur,
-        maxBlur
-      );
+  //     const amountBlur = mapValue(
+  //       constrainValue(scroll, minScroll, maxScroll),
+  //       minScroll,
+  //       maxScroll,
+  //       minBlur,
+  //       maxBlur
+  //     );
 
-      overlayRef.current.style.backdropFilter = `blur(${amountBlur}px)`;
-    }
-  }, [scroll]);
+  //     overlayRef.current.style.backdropFilter = `blur(${amountBlur}px)`;
+  //   }
+  // }, [scroll]);
 
   return (
     <section className="fixed inset-0 h-screen">
@@ -113,7 +132,7 @@ export function MediaBackground({
         />
       )}
       <Suspense>
-        <Player video={video} />;
+        <Player video={video} />
       </Suspense>
       <div
         ref={overlayRef}
@@ -131,15 +150,16 @@ const Player = memo(function Player({
   const player = useRef<MediaPlayerInstance>(null);
   const remote = useMediaRemote(player);
 
-  const onFocus = () => {
-    remote.play();
-  };
-
-  const onBlur = () => {
-    remote.pause();
-  };
-
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
+    const onFocus = () => {
+      remote.play();
+    };
+
+    const onBlur = () => {
+      remote.pause();
+    };
+
     window.addEventListener("focus", onFocus, { passive: true });
     window.addEventListener("blur", onBlur, { passive: true });
 
@@ -147,7 +167,8 @@ const Player = memo(function Player({
       window.removeEventListener("focus", onFocus);
       window.removeEventListener("blur", onBlur);
     };
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!video) return null;
 
