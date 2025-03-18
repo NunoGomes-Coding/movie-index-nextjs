@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 /* html {
   scroll-behavior: smooth;
@@ -15,8 +33,43 @@ body {
   }
 } */
 
-@layer base {
-  /* :root {
+:root {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --radius: 0.5rem;
+}
+
+/* @layer base {
+  :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -42,7 +95,7 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-  } */
+  }
   :root[class~="dark"],
   :root,
   .dark {
@@ -72,26 +125,28 @@ body {
     --chart-5: 340 75% 55%;
     --radius: 0.5rem;
   }
-}
+} */
 
-/* width */
-::-webkit-scrollbar {
-  @apply w-2;
-}
+@layer utilities {
+  /* width */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
 
-/* Track */
-::-webkit-scrollbar-track {
-  @apply bg-background;
-}
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  @apply bg-muted-foreground/30 rounded-lg;
-}
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-lg;
+  }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-muted-foreground/50;
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
 }
 
 

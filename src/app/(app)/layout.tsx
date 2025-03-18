@@ -22,7 +22,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
       </nav> */}
       <NewNavBar />
-      <main className="flex-grow">{children}</main>
+      <main className="grow">{children}</main>
       <footer className="relative flex flex-col items-start gap-1 bg-background mt-4 p-4 border-t w-full text-muted-foreground text-sm">
         <div className="flex flex-wrap justify-between container gap-2">
           <span className="text-foreground">Copyright &copy;Nuno Gomes 2024-2025.</span>

@@ -90,7 +90,7 @@ export function CustomCarouselItem(props: {
   return (
     <CarouselItem
       key={`carousel-item-${props.id}`}
-      className="bg-transparent lg:max-w-52 sm:max-w-48 max-w-44 select-none aspect-[2/3]"
+      className="bg-transparent lg:max-w-52 sm:max-w-48 max-w-44 select-none aspect-2/3"
     >
       <CustomCarouselItemContent
         id={props.id}
@@ -109,14 +109,14 @@ export function CustomCarouselItem(props: {
           src={props.poster_path}
           alt={props.title || "poster"}
           className={
-            "group-hover:scale-[1.035] absolute inset-0 transition-transform duration-300 object-cover scale-1 size-full"
+            "group-hover:scale-[1.035] absolute inset-0 transition-transform duration-300 object-cover size-full"
           }
         />
         <div
           className={cn(
             "absolute inset-0",
             !props.clean &&
-              "from-background/80 via-background/30 via-30% to-background/0 bg-gradient-to-t",
+              "from-background/80 via-background/30 via-30% to-background/0 bg-linear-to-t",
             props.clean && "bg-black/10"
           )}
         />
@@ -157,7 +157,7 @@ function CustomCarouselItemContent({
         // preventScrollReset={!props.href || !!props.preventScroll}
         // replace={props.linkReplace}
         className={cn(
-          "size-full flex items-end justify-start p-4 rounded-lg bg-background relative group overflow-hidden active:cursor-grabbing aspect-[2/3]",
+          "size-full flex items-end justify-start p-4 rounded-lg bg-background relative group overflow-hidden active:cursor-grabbing aspect-2/3",
           !props.href && "cursor-grab"
         )}
         title={props.title}
@@ -169,7 +169,7 @@ function CustomCarouselItemContent({
 
   return (
     <div
-      className="size-full flex items-end justify-start p-4 rounded-lg bg-background relative group overflow-hidden active:cursor-grabbing aspect-[2/3] cursor-grab"
+      className="size-full flex items-end justify-start p-4 rounded-lg bg-background relative group overflow-hidden active:cursor-grabbing aspect-2/3 cursor-grab"
       title={props.title}
     >
       {children}

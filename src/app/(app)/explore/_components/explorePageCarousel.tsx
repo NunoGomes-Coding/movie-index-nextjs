@@ -37,7 +37,7 @@ export function ExplorePageMainCarousel({
       {children}
       {/* <CarouselPreviousClean className="bg-background/40 hover:bg-background/50 border-none backdrop-blur-lg size-8" />
       <CarouselNextClean className="bg-background/40 hover:bg-background/50 border-none backdrop-blur-lg size-8" /> */}
-      <CarouselThumbContainer className="bottom-48 absolute flex justify-center items-end gap-2 max-lg:hidden px-4 w-full h-fit !translate-x-0">
+      <CarouselThumbContainer className="bottom-48 absolute flex justify-center items-end gap-2 max-lg:hidden px-4 w-full h-fit translate-x-0!">
         {[...Array(numItems)].map((_, index) => (
           <CarouselIndicator
             key={index}

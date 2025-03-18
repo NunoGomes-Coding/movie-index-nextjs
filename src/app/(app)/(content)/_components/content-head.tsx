@@ -43,7 +43,7 @@ function InternalContentHead({ ...content }: ContentHeadProps) {
           // key={`poster-${movie.id}`}
           src={content?.poster_path}
           alt=""
-          className="max-md:hidden rounded-lg w-auto h-[350px] select-none aspect-[2/3] object-cover"
+          className="max-md:hidden rounded-lg w-auto h-[350px] select-none aspect-2/3 object-cover"
         />
 
         <div className="space-y-4 w-full md:w-[60%]">

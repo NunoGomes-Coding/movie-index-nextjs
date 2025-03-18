@@ -55,7 +55,7 @@ export function CarouselItemSkeleton() {
   return (
     <CarouselItem
       // key={`carousel-item-${props.id}`}
-      className="bg-transparent lg:max-w-52 sm:max-w-48 max-w-44 select-none aspect-[2/3]"
+      className="bg-transparent lg:max-w-52 sm:max-w-48 max-w-44 select-none aspect-2/3"
     >
       <Skeleton className="size-full rounded-lg" />
     </CarouselItem>

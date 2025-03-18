@@ -24,7 +24,7 @@ export function NavMenu() {
         />
       </div>
       <DropdownMenu>
-        <DropdownMenuTrigger className="md:hidden flex gap-2 items-center outline-none select-none h-10 px-4 py-2 rounded-md transition-colors hover:bg-foreground/[15%] aria-[disabled]:pointer-events-none aria-[disabled]:opacity-50 disabled:pointer-events-none disabled:opacity-50">
+        <DropdownMenuTrigger className="md:hidden flex gap-2 items-center outline-hidden select-none h-10 px-4 py-2 rounded-md transition-colors hover:bg-foreground/[15%] aria-[disabled]:pointer-events-none aria-[disabled]:opacity-50 disabled:pointer-events-none disabled:opacity-50">
           <span>Discover</span>
           <ChevronDown className="size-4" />
         </DropdownMenuTrigger>

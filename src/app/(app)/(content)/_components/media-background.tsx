@@ -117,7 +117,7 @@ export function MediaBackground({
       </Suspense>
       <div
         ref={overlayRef}
-        className="fixed inset-0 size-full bg-gradient-to-t from-background from-20% via-background/50 via-70% to-transparent"
+        className="fixed inset-0 size-full bg-linear-to-t from-background from-20% via-background/50 via-70% to-transparent"
       />
     </section>
   );
@@ -164,7 +164,7 @@ const Player = memo(function Player({
       autoPlay
       muted
       // loop
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none min-w-full min-h-screen opacity-0 data-[playing]:opacity-100 transition-opacity duration-500 !w-auto"
+      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none min-w-full min-h-screen opacity-0 data-playing:opacity-100 transition-opacity duration-500 w-auto!"
     >
       <MediaProvider />
     </MediaPlayer>
