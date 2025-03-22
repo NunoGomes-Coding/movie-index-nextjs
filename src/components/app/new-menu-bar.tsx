@@ -100,7 +100,7 @@ export const NewNavBar = () => {
                       <item.icon className="mr-2 size-4" />
                       {item.title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="!w-[450px] p-4">
+                    <NavigationMenuContent className="w-[450px]! p-4">
                       <div className="flex flex-col lg:grid grid-cols-2 gap-4">
                         <div className="flex flex-col h-full justify-between">
                           <div className="flex flex-col gap-3">

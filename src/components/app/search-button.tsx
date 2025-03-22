@@ -94,7 +94,7 @@ export function SearchButton() {
       <DialogContent
         noClose
         outerdivclassname={className}
-        className="bg-transparent border-none p-0 shadow-none gap-0 rounded-md !w-[32rem] !max-w-[95vw]"
+        className="bg-transparent border-none p-0 shadow-none gap-0 rounded-md w-[32rem]! max-w-[95vw]!"
       >
         <DialogTitle className="hidden">Search Modal</DialogTitle>
         {/* sm:max-w-[600px] max-sm:max-w-[94vw] max-md:top-5 max-md:translate-y-0 max-h-[96dvh] */}
@@ -115,7 +115,7 @@ export function SearchButton() {
               <SelectTrigger disabled className="w-44 bg-background">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="z-[150]">
+              <SelectContent className="z-150">
                 <SelectItem value="all">All</SelectItem>
                 <SelectItem disabled value="movies">
                   Movies
@@ -127,19 +127,19 @@ export function SearchButton() {
             </Select>
           </div>
 
-          <div className="w-full relative mr-auto bg-background/60 backdrop-blur-sm rounded-xl group overflow-hidden h-12 border border-input">
+          <div className="w-full relative mr-auto bg-background/60 backdrop-blur-xs rounded-xl group overflow-hidden h-12 border border-input">
             <div className="flex items-center justify-center absolute pointer-events-none top-1/2 -translate-y-1/2 w-12 left-0">
               <Search className="text-gray-300" />
             </div>
             <Input
-              className="bg-transparent size-full p-6 pl-12 text-base font-medium !border-none"
+              className="bg-transparent size-full p-6 pl-12 text-base font-medium border-none!"
               placeholder="What movie is on your mind?"
               value={value}
               onChange={handleInputChange}
               autoFocus
             />
             {value !== "" && (
-              <div className="flex items-center cursor-pointer justify-center absolute top-1/2 -translate-y-1/2 w-12 right-0 !text-gray-300 hover:!text-gray-100">
+              <div className="flex items-center cursor-pointer justify-center absolute top-1/2 -translate-y-1/2 w-12 right-0 text-gray-300! hover:text-gray-100!">
                 <X
                   className="text-gray-300 cursor-pointer"
                   onClick={() => setValue("")}
@@ -248,7 +248,7 @@ const SearchResult = memo(function SearchResult({
       <CustomImage
         type="poster"
         size="w342"
-        className="aspect-[2/3] h-[6.5rem] w-auto rounded shrink-0"
+        className="aspect-2/3 h-[6.5rem] w-auto rounded shrink-0"
         src={image}
         alt={`poster-${result.id}`}
       />

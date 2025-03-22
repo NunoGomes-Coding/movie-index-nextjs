@@ -143,7 +143,7 @@ function ContentHead({
             loading="eager"
             src={getImageUrl(person?.profile_path, "profile", "w342")}
             alt=""
-            className="max-h-[350px] max-md:max-w-[45%] object-cover size-auto rounded-lg select-none aspect-[2/3] max-xl:float-left mr-4 md:mr-6 mb-2"
+            className="max-h-[350px] max-md:max-w-[45%] object-cover size-auto rounded-lg select-none aspect-2/3 max-xl:float-left mr-4 md:mr-6 mb-2"
           />
           <div className="block md:pr-2">
             <h1 className="max-md:hidden text-3xl font-semibold">
@@ -198,7 +198,7 @@ export default async function PersonPage({
         alt={""}
         className="fixed inset-0 object-cover object-center h-screen w-screen brightness-[0.25] select-none pointer-events-none -z-10"
       />
-      <div className="fixed inset-0 size-full backdrop-blur-3xl bg-gradient-to-t from-background to-transparent via-30% to-50% select-none pointer-events-none z-0" />
+      <div className="fixed inset-0 size-full backdrop-blur-3xl bg-linear-to-t from-background to-transparent via-30% to-50% select-none pointer-events-none z-0" />
       <ContentHead person={person} />
       <div className="space-y-10">
         <Suspense fallback={<CarouselSkeleton container />}>

@@ -18,7 +18,7 @@ export default function Home() {
             Explore Movies <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-        <div className="absolute !mt-0 inset-0 size-full bg-gradient-ellipse-c from-red-950 to-background to-70% -z-10" />
+        <div className="absolute mt-0! inset-0 size-full bg-gradient-ellipse-c from-red-950 to-background to-70% -z-10" />
       </div>
     </main>
   );

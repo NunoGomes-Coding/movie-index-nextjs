@@ -159,7 +159,7 @@ const Carousel = React.forwardRef<
           ref={ref}
           onKeyDownCapture={handleKeyDown}
           className={cn(
-            "grid gap-2 w-full relative focus:outline-none",
+            "grid gap-2 w-full relative focus:outline-hidden",
             className
           )}
           role="region"
