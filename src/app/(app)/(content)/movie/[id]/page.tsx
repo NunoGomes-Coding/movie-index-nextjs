@@ -184,6 +184,7 @@ async function MediaComponent({
       poster_path={movie.poster_path}
       backdrop_path={movie.backdrop_path}
       video={videos}
+      title={movie.title}
     />
   );
 }

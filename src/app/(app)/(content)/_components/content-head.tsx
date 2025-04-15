@@ -34,8 +34,8 @@ export const ContentHead = memo(InternalContentHead);
 function InternalContentHead({ ...content }: ContentHeadProps) {
   return (
     <>
-      <div className="h-screen bg-transparent" />
-      <div className="flex gap-8 container max-md:-mt-[20rem] -mt-[26rem]">
+      {/* <div className="h-screen bg-transparent pointer-events-none" /> */}
+      <div className="mt-[calc(100vh-26rem)] flex gap-8 container max-md:mt-[calc(100vh-20rem)]">
         <CustomImage
           type="poster"
           size="w342"
@@ -46,7 +46,7 @@ function InternalContentHead({ ...content }: ContentHeadProps) {
           className="max-md:hidden rounded-lg w-auto h-[350px] select-none aspect-2/3 object-cover"
         />
 
-        <div className="space-y-4 w-full md:w-[60%]">
+        <div className="space-y-4 w-full md:w-[60%] z-10">
           <h1 className="font-semibold text-5xl md:text-6xl">
             {content?.title}
           </h1>

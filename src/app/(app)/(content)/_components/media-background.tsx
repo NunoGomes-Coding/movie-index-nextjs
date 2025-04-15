@@ -1,41 +1,16 @@
 "use client";
 
-import { memo, Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { cn, constrainValue, mapValue } from "@/lib/utils";
-
-import type { operations } from "@/tmdb/schema";
-import {
-  MediaPlayer,
-  type MediaPlayerInstance,
-  MediaProvider,
-  useMediaRemote,
-} from "@vidstack/react";
-
-import "@vidstack/react/player/styles/base.css";
 import { CustomImage } from "@/components/app/custom-image";
 
-type videosType =
+import type { operations } from "@/tmdb/schema";
+
+import { Player } from "./video-player";
+
+export type videosType =
   | operations["movie-videos"]["responses"]["200"]["content"]["application/json"]
   | operations["tv-series-videos"]["responses"]["200"]["content"]["application/json"];
-
-function GetTrailer(
-  movieVideos: videosType["results"] | undefined
-): string | undefined {
-  if (!movieVideos) return undefined;
-
-  const videoTeasersAndTrailers = movieVideos.filter(
-    (val) =>
-      (val.site === "YouTube" || val.site === "Vimeo") &&
-      (val.type === "Trailer" || val.type === "Teaser") &&
-      val.official === true &&
-      val.key !== undefined
-  );
-  const video =
-    videoTeasersAndTrailers.find((val) => val.type === "Trailer") ??
-    videoTeasersAndTrailers[0];
-
-  return video ? `${video.site?.toLowerCase()}/${video.key}` : undefined;
-}
 
 const MIN_SCROLL = 0;
 const MAX_SCROLL = 325;
@@ -46,10 +21,12 @@ export function MediaBackground({
   backdrop_path,
   poster_path,
   video,
+  title
 }: {
   backdrop_path: string | undefined;
   poster_path?: string | undefined;
   video?: videosType;
+  title: string | undefined
 }) {
   // const [scroll, setScroll] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -85,25 +62,6 @@ export function MediaBackground({
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (overlayRef.current) {
-  //     const minScroll = 0;
-  //     const maxScroll = 325;
-  //     const minBlur = 0;
-  //     const maxBlur = 55;
-
-  //     const amountBlur = mapValue(
-  //       constrainValue(scroll, minScroll, maxScroll),
-  //       minScroll,
-  //       maxScroll,
-  //       minBlur,
-  //       maxBlur
-  //     );
-
-  //     overlayRef.current.style.backdropFilter = `blur(${amountBlur}px)`;
-  //   }
-  // }, [scroll]);
-
   return (
     <section className="fixed inset-0 h-screen">
       {backdrop_path && (
@@ -132,7 +90,7 @@ export function MediaBackground({
         />
       )}
       <Suspense>
-        <Player video={video} />
+        <Player video={video} title={title} />
       </Suspense>
       <div
         ref={overlayRef}
@@ -141,53 +99,3 @@ export function MediaBackground({
     </section>
   );
 }
-
-const Player = memo(function Player({
-  video,
-}: {
-  video: videosType | undefined;
-}) {
-  const player = useRef<MediaPlayerInstance>(null);
-  const remote = useMediaRemote(player);
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    const onFocus = () => {
-      remote.play();
-    };
-
-    const onBlur = () => {
-      remote.pause();
-    };
-
-    window.addEventListener("focus", onFocus, { passive: true });
-    window.addEventListener("blur", onBlur, { passive: true });
-
-    return () => {
-      window.removeEventListener("focus", onFocus);
-      window.removeEventListener("blur", onBlur);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!video) return null;
-
-  const trailer = GetTrailer(video.results);
-
-  return (
-    <MediaPlayer
-      ref={player}
-      // playsInline
-      title="youtube-background"
-      src={trailer}
-      load="idle"
-      posterLoad="custom"
-      autoPlay
-      muted
-      // loop
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none min-w-full min-h-screen opacity-0 data-playing:opacity-100 transition-opacity duration-500 w-auto!"
-    >
-      <MediaProvider />
-    </MediaPlayer>
-  );
-});
