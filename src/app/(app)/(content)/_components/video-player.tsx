@@ -3,14 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
-  MediaPlayerInstance,
+  type MediaPlayerInstance,
   useMediaRemote,
   useMediaState,
   MediaPlayer,
   MediaProvider,
 } from "@vidstack/react";
-import { memo, useRef, useEffect, ComponentProps } from "react";
-import { videosType } from "./media-background";
+import { memo, useRef, useEffect, type ComponentProps } from "react";
+import type { videosType } from "./media-background";
 import { Maximize } from "lucide-react";
 import { defaultLayoutIcons, DefaultVideoLayout } from "@vidstack/react/player/layouts/default";
 
@@ -47,27 +47,29 @@ export const Player = memo(function Player({
   const player = useRef<MediaPlayerInstance>(null);
   const remote = useMediaRemote(player);
   const isFullscreen = useMediaState("fullscreen", player);
-  const firstTimeFullscreen = useRef<boolean>(false);
+  // const firstTimeFullscreen = useRef<boolean>(false);
 
   const onFullscreenChange = (isFullscreen: boolean) => {
     if (isFullscreen) {
-      if (firstTimeFullscreen.current === false) {
-        firstTimeFullscreen.current = true;
-        remote.seek(0);
-      }
+      // if (firstTimeFullscreen.current === false) {
+      //   firstTimeFullscreen.current = true;
+      //   remote.seek(0);
+      // }
       remote.unmute();
     } else {
       remote.mute();
+      remote.play()
     }
   }
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     const onFocus = () => {
-      if (!isFullscreen) remote.play();
+      remote.play();
     };
 
     const onBlur = () => {
-      if (!isFullscreen) remote.pause();
+      remote.pause();
     };
 
     window.addEventListener("focus", onFocus, { passive: true });
@@ -78,7 +80,7 @@ export const Player = memo(function Player({
       window.removeEventListener("blur", onBlur);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFullscreen]);
+  }, []);
 
   if (!video) return null;
 
